@@ -8,7 +8,7 @@ Clone this repository:
 git clone https://github.com/cast42/lactaat.git
 ```
 
-Adapt your measurements in file [lactaat.py](lactaat.py)
+Adapt your measurements in file [lactate_report.py](lactate_report.py)
 
 Run the python program lactaat.py:
 
@@ -19,7 +19,7 @@ uv run python lactaat.py
 Output:
 
 ```ascii
-➜  lactaat git:(main) ✗ uv run python lactaat.py
+➜  lactaat git:(main) ✗ uv run python lactate_report.py
                                   Measurement input
 ┏━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━┳━━━━━━┳━━━━━━━━┓
 ┃ time ┃ intensity ┃ intensity per kg ┃ heart_rate ┃ lactate ┃ rpm  ┃ step ┃ length ┃
