@@ -3,6 +3,33 @@ import io
 import lactate_thresholds as lt
 import lactate_thresholds.zones as zones
 import pandas as pd
+from rich.console import Console
+from rich.table import Table
+
+
+def dataframe_to_rich_table(df: pd.DataFrame, title: str = "") -> Table:
+    """
+    Convert a pandas DataFrame to a Rich Table.
+
+    Args:
+        df (pd.DataFrame): The pandas DataFrame to convert.
+        title (str): The title of the table.
+
+    Returns:
+        Table: A Rich Table representation of the DataFrame.
+    """
+    table = Table(title=title)
+
+    # Add columns
+    for column in df.columns:
+        table.add_column(column, justify="left", no_wrap=True)
+
+    # Add rows
+    for _, row in df.iterrows():
+        table.add_row(*[str(value) for value in row])
+
+    return table
+
 
 DATA = """60    89              1,5
 
@@ -33,29 +60,37 @@ df = pd.read_csv(
 df["step"] = df.index + 1
 df["length"] = 4
 
-print(df)
+# Create a Rich Table
+console = Console()
+table = dataframe_to_rich_table(df, title="Measurement input")
+
+# Print the table
+console.print(table)
 
 
 results = lt.determine(df, lactate_col="lactate")
 
-print("ltp1", results.ltp1)
-print("lpt2", results.ltp2)
-print("lt1_estimate", results.lt1_estimate)
-print("lt2_estimate", results.lt2_estimate)
+console.print("lpt1", results.ltp1)
+console.print("lpt2", results.ltp2)
+console.print("lt2_estimate", results.lt1_estimate)
+console.print("lt2_estimate", results.lt2_estimate)
 
-pd.reset_option("display.max_colwidth")
-
-print("Seiler 3 zones:")
 zones_seiler3_df = zones.seiler_3_zones(results)
-print(zones_seiler3_df)
+table_seiler_3 = dataframe_to_rich_table(zones_seiler3_df, title="Seiler 3 zones")
+console.print()
+console.print(table_seiler_3)
 
-print("Seiler 5 zones:")
 zones_seiler5_df = zones.seiler_5_zones(results)
-print(zones_seiler5_df)
+table_seiler_5 = dataframe_to_rich_table(zones_seiler3_df, title="Seiler 5 zones")
+console.print()
+console.print(table_seiler_5)
 
-print("Friel 7 zones running:")
 zones_friel_7_zones_running_df = zones.friel_7_zones_running(results)
-print(zones_friel_7_zones_running_df)
+table_friel_7_zones_running = dataframe_to_rich_table(
+    zones_friel_7_zones_running_df, title="Friel 7 zones running"
+)
+console.print()
+console.print(table_friel_7_zones_running)
 
 chart_heart_rate = lt.plot.heart_rate_intensity_plot(results)
 chart_heart_rate.save("chart_heart_rate_intensity.html")

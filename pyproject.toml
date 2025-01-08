@@ -1,7 +1,7 @@
 [project]
 name = "lactaat"
 version = "0.1.0"
-description = "Add your description here"
+description = "Use library lactate-thresholds to calculate threshold and zones"
 readme = "README.md"
 requires-python = ">=3.12.3"
 dependencies = [
