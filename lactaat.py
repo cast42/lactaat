@@ -43,12 +43,19 @@ print("lpt2", results.ltp2)
 print("lt1_estimate", results.lt1_estimate)
 print("lt2_estimate", results.lt2_estimate)
 
-# pd.set_option("display.max_colwidth", None)
 pd.reset_option("display.max_colwidth")
+
+print("Seiler 3 zones:")
 zones_seiler3_df = zones.seiler_3_zones(results)
 print(zones_seiler3_df)
+
+print("Seiler 5 zones:")
 zones_seiler5_df = zones.seiler_5_zones(results)
 print(zones_seiler5_df)
+
+print("Friel 7 zones running:")
+zones_friel_7_zones_running_df = zones.friel_7_zones_running(results)
+print(zones_friel_7_zones_running_df)
 
 chart_heart_rate = lt.plot.heart_rate_intensity_plot(results)
 chart_heart_rate.save("chart_heart_rate_intensity.html")
