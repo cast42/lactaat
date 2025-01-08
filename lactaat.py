@@ -6,6 +6,17 @@ import pandas as pd
 from rich.console import Console
 from rich.table import Table
 
+# Edit this DATA constant with your measurements
+
+DATA = """10 100 1.07 104 0.5 83
+13 140 1.50 106 0.5 83
+16 180 1.93 125 0.5 84
+19 220 2.36 137 0.9 86
+22 260 2.79 162 2.3 84
+25 300 3.22 173 5.0 88
+28 340 3.65 187 7.6 83
+31 380 4.08 187 11.7 66"""
+
 
 def dataframe_to_rich_table(df: pd.DataFrame, title: str = "") -> Table:
     """
@@ -31,34 +42,18 @@ def dataframe_to_rich_table(df: pd.DataFrame, title: str = "") -> Table:
     return table
 
 
-DATA = """60    89              1,5
-
-100     102             1,7
-
-140     109             1,5
-
-180     126             4,2
-
-220     142             2,5
-
-260     168             6,1
-
-300     175             12,7"""
-# Replace multiple spaces with a single space and remove extra newlines
-data_cleaned = "\n".join([" ".join(line.split()) for line in DATA.strip().split("\n")])
-
 # Load the data into a DataFrame
 # Specify the delimiter as a space and use `decimal=','` to handle European decimal notation
 df = pd.read_csv(
-    io.StringIO(data_cleaned),
+    io.StringIO(DATA),
     sep=" ",
     header=None,
-    names=["intensity", "heart_rate", "lactate"],
-    decimal=",",
+    names=["time", "intensity", "intensity per kg", "heart_rate", "lactate", "rpm"],
+    # decimal=",",
 )
 
 df["step"] = df.index + 1
-df["length"] = 4
+df["length"] = 3
 
 # Create a Rich Table
 console = Console()
@@ -93,7 +88,9 @@ console.print()
 console.print(table_friel_7_zones_running)
 
 chart_heart_rate = lt.plot.heart_rate_intensity_plot(results)
-chart_heart_rate.save("chart_heart_rate_intensity.html")
+chart_heart_rate.save("images/chart_heart_rate_intensity.html")
+chart_heart_rate.save("images/chart_heart_rate_intensity.png")
 
 chart_lactate = lt.plot.lactate_intensity_plot(results)
-chart_lactate.save("chart_lactate_intensity.html")
+chart_lactate.save("images/chart_lactate_intensity.html")
+chart_lactate.save("images/chart_lactate_intensity.png")

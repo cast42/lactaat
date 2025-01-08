@@ -2,6 +2,12 @@
 
 Repo to use python library [lactate-thresholds](https://github.com/bart6114/lactate-thresholds) to calculate thresholds and zones.
 
+Clone this repository:
+
+```zsh
+git clone https://github.com/cast42/lactaat.git
+```
+
 Adapt your measurements in file [lactaat.py](lactaat.py)
 
 Run the python program lactaat.py:

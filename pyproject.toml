@@ -6,4 +6,5 @@ readme = "README.md"
 requires-python = ">=3.12.3"
 dependencies = [
     "lactate-thresholds>=0.3.4",
+    "vl-convert-python>=1.7.0",
 ]
