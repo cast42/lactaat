@@ -76,7 +76,7 @@ console.print()
 console.print(table_seiler_3)
 
 zones_seiler5_df = zones.seiler_5_zones(results)
-table_seiler_5 = dataframe_to_rich_table(zones_seiler3_df, title="Seiler 5 zones")
+table_seiler_5 = dataframe_to_rich_table(zones_seiler5_df, title="Seiler 5 zones")
 console.print()
 console.print(table_seiler_5)
 
