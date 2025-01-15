@@ -10,10 +10,10 @@ git clone https://github.com/cast42/lactaat.git
 
 Adapt your measurements in file [lactate_report.py](lactate_report.py)
 
-Run the python program lactaat.py:
+Run the python program lactate_report.py:
 
 ```zsh
-uv run python lactaat.py
+uv run python lactate_report.py
 ```
 
 Output:
